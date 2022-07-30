@@ -4,6 +4,7 @@ const Jwt = require("jsonwebtoken");
 const Joi = require("joi")
 const fs = require("fs");
 const response = require("../../helpers/response")
+const Logger = require("../../middleware/logger")
 require("dotenv").config();
 
 
@@ -54,10 +55,13 @@ module.exports = {
         const { body } = req;
         try {
             const { value, error } = loginSchema.validate(body);
-            if (error) return response.badrequest(res, error.message);
+            // if (error) {
+            //     Logger.error(`Login failed: ${error.message}`);
+            //     return response.badrequest(res, error.message)
+            // };
 
             const { email, password } = req.body;
-            const user = await User.findOne({ where: { email } });
+            const user = await User.findOne({ where: { email }, logging:(sql, queryObject )=>{Logger.info( sql )} },);
             if (user) {
                 const valid = await bcrypt.compare(password, user.password);
                 if (valid) {
@@ -73,28 +77,24 @@ module.exports = {
                     );
 
                     response.success(res, token, "login successfuly", null, null, null)
-                    res.status(200).json({
-                        status: true,
-                        message: "Success",
-                        data: token,
-                    });
+                    
                 } else {
+                    Logger.error(`Login failed: ${email} password incorrect`)
                     res.status(400).json({
                         status: false,
                         message: "Password incorrect",
                     });
                 }
             } else {
+                Logger.error(`Login failed: ${email} Not Registered`)
                 res.status(400).json({
                     status: false,
                     message: "Email not registered",
                 });
             }
         } catch (err) {
-            res.status(500).json({
-                status: false,
-                message: err.message,
-            });
+            Logger.error(err.message)
+            response.badrequest(res, err.message);
         }
     },
     update: async (req, res) => {

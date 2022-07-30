@@ -1,5 +1,6 @@
 const { Sequelize, Op, DataTypes } = require("sequelize");
 const database = require("../config/database");
+const Logger = require("../middleware/logger");
 
 const env = process.env.NODE_ENV || "development";
 
@@ -13,7 +14,8 @@ const sequelize = new Sequelize(database[env].database, database[env].username, 
     idle: 10000,
     acquire: 30000,
   },
-  logging: true
+  logging: (msg) => Logger.info(msg),
+  
 });
 
 module.exports.sequelize = sequelize;

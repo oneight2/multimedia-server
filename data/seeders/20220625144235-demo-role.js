@@ -21,6 +21,7 @@ module.exports = {
           type: "Seeder",
           description: "created by register seeder",
         }),
+        updatedAt: new Date(),
       },
       {
         name: "Admin",
@@ -31,6 +32,8 @@ module.exports = {
           type: "Seeder",
           description: "created by register seeder",
         }),
+        updatedAt: new Date(),
+
       },
       {
         name: "User",
@@ -41,6 +44,8 @@ module.exports = {
           type: "Seeder",
           description: "created by register seeder",
         }),
+        updatedAt: new Date(),
+
       },
     ], {});
 

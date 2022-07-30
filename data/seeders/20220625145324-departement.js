@@ -21,6 +21,8 @@ module.exports = {
           type: "Seeder",
           description: "created by register seeder",
         }),
+        updatedAt: new Date(),
+
       },
       {
         name: 'Percetakan',
@@ -31,6 +33,8 @@ module.exports = {
           type: "Seeder",
           description: "created by register seeder",
         }),
+        updatedAt: new Date(),
+
       }
     ])
   },

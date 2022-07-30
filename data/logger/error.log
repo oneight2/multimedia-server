@@ -1,0 +1,8 @@
+[error] 2022-07-07T01:37:09.697Z Login failed: "email" is not allowed to be empty
+[error] 2022-07-07T01:59:05.393Z Cannot set headers after they are sent to the client
+[error] 2022-07-07T01:59:58.242Z Cannot set headers after they are sent to the client
+[error] 2022-07-07T02:03:37.169Z Cannot set headers after they are sent to the client
+{"level":"error","message":"Login failed:  Not Registered","timestamp":"2022-07-07T03:33:16.332Z"}
+[error] 2022-07-07T03:34:27.558Z "Login failed:  Not Registered"
+[error] 2022-07-07T03:39:30.395Z "Login failed:  Not Registered"
+[error] 2022-07-07T03:40:06.053Z "Login failed:  Not Registered"
